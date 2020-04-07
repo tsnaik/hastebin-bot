@@ -16,7 +16,7 @@ module.exports = function (app) {
         // Respond by hitting the telegram bot API and responding to the approprite chat_id with the word "Polo!!"
         axios
           .post(
-            `'${tokens.TELEGRAM_TOKEN}/sendMessage`,
+            `'https://api.telegram.org/${tokens.TELEGRAM_TOKEN}/sendMessage`,
             {
               chat_id: message.chat.id,
               text: 'Polo!!'
