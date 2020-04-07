@@ -114,4 +114,5 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-.now
+# tokens
+common/tokens.js
