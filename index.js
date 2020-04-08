@@ -1,3 +1,4 @@
+require('dotenv').config()
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
@@ -24,5 +25,5 @@ require('./controllers/pastes.controller')(app);
 
 // Finally, start our server
 app.listen(PORT, function() {
-  console.log('Telegram app listening on port 3000!')
+  console.log(`Hastebot listening on port ${process.env.PORT}`)
 })
