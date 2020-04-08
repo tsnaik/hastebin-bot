@@ -1,5 +1,5 @@
-# hastebin_bot
-Simple telegram bot for creating and sharing hastebin snippets
+# Hastebin Telegram Bot
+Simple telegram bot for creating and sharing [Hastebin](https://hastebin.com/) snippets
 
 ## Prerequisites
 - [npm](https://www.npmjs.com/get-npm)
