@@ -31,10 +31,11 @@ module.exports = function (app) {
         }
 
         if (message.text.startsWith('/create')) {
-            if(message.text.length < 9) {
-                text = 'Please add a code snippet after /create to create'
+            const entity = message.entities.find((value) => value.type === 'bot_command');
+            if(message.text.length < entity.length - entity.offset + 3) {
+                text = 'Please add a code snippet after the command'
             } else {
-                const snippet = message.text.substring(8);
+                const snippet = message.text.substring(entity.length - entity.offset + 2);
                 text = snippet;
             }
             sendMessage(chatId, text, res);
