@@ -15,33 +15,38 @@ module.exports = function (app) {
     app.get('/hello', (req, res) => res.send("hello world"));
 
     app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, async function (req, res) {
-        const { message } = req.body;
-        console.log(message);
+        try {
+            const { message } = req.body;
+            console.log(message);
 
-        if (!message || !message.chat) {
-            return res.end();
-        }
-
-        const chatId = message.chat.id;
-        let text;
-        if (message.text === 'start') {
-            text = WELCOME_MESSAGE;
-            sendMessage(chatId, text, res);
-            return;
-        }
-
-        if (message.text.startsWith('/create')) {
-            const entity = message.entities.find((value) => value.type === 'bot_command');
-            if(message.text.length < entity.length - entity.offset + 3) {
-                text = 'Please add a code snippet after the command'
-            } else {
-                const snippet = message.text.substring(entity.length - entity.offset + 2);
-                text = snippet;
+            if (!message || !message.chat || !message.text) {
+                return res.end();
             }
-            sendMessage(chatId, text, res);
-            return;
+
+            const chatId = message.chat.id;
+            let text;
+            if (message.text === 'start') {
+                text = WELCOME_MESSAGE;
+                sendMessage(chatId, text, res);
+                return;
+            }
+
+            if (message.text.startsWith('/create')) {
+                const entity = message.entities.find((value) => value.type === 'bot_command');
+                if (message.text.length < entity.length - entity.offset + 3) {
+                    text = 'Please add a code snippet after the command'
+                } else {
+                    const snippet = message.text.substring(entity.length - entity.offset + 2);
+                    text = snippet;
+                }
+                sendMessage(chatId, text, res);
+                return;
+            }
+
+            res.end();
+
+        } catch (err) {
+            console.log(err);
         }
-        
-        res.end();
     })
-}
+}   
