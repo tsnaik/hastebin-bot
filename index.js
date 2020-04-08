@@ -2,7 +2,6 @@ require('dotenv').config()
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
-const axios = require('axios')
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json()) // for parsing application/json
