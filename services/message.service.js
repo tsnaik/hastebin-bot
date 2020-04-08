@@ -1,11 +1,11 @@
 const axios = require('axios')
 
-sendMessage = (text) => {
+sendMessage = (chatId, text) => {
     axios
         .post(
             `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`,
             {
-                chat_id: message.chat.id,
+                chat_id: chatId,
                 text: text
             }
         )

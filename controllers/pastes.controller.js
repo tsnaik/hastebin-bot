@@ -5,6 +5,7 @@ module.exports = function (app) {
 
     app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, function(req, res) {
         const { message } = req.body;
+        const chatId = message.chat.id;
         console.log(message);
       
         if (!message) {
@@ -13,10 +14,10 @@ module.exports = function (app) {
       
         switch (message.text) {
             case '/start':
-                messageService.sendMessage(WELCOME_MESSAGE);
+                messageService.sendMessage(chatId, WELCOME_MESSAGE);
                 break;
             default:
-                messageService.sendMessage(message.text);
+                messageService.sendMessage(chatId, message.text);
                 break;
         }
       })
