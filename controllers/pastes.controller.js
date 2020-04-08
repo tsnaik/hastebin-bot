@@ -1,7 +1,7 @@
 module.exports = function (app) {
     app.get('/hello', (req, res) => res.send("hello world"));
 
-    app.post(`${process.env.TELEGRAM_TOKEN}/new-message`, function(req, res) {
+    app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, function(req, res) {
         const { message } = req.body
       
         //Each message contains "text" and a "chat" object, which has an "id" which is the chat id
