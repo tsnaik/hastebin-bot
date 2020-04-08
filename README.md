@@ -29,4 +29,4 @@ $ node index.js
   |Variable        | Value                         |
   |----------------|-------------------------------|
   |TELEGRAM_TOKEN  | \<Your unique telegram token> |
-  - Don't forget to attach the [Webhook](https://core.telegram.org/bots/api#getting-updates) with your bot
+- Don't forget to attach the [Webhook](https://core.telegram.org/bots/api#getting-updates) with your bot
