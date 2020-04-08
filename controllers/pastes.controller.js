@@ -33,20 +33,22 @@ module.exports = function (app) {
 
             if (message.text.startsWith('/create')) {
                 const entity = message.entities.find((value) => value.type === 'bot_command');
-                if (message.text.length < entity.length - entity.offset + 3) {
+                if (message.text.length < entity.length - entity.offset + 1) {
                     text = 'Please add a code snippet after the command'
                 } else {
-                    const snippet = message.text.substring(entity.length - entity.offset + 2);
+                    const snippet = message.text.substring(entity.length - entity.offset + 1);
                     text = snippet;
                 }
                 sendMessage(chatId, text, res);
                 return;
             }
 
-            res.end();
+
 
         } catch (err) {
             console.log(err);
+        } finally {
+            res.end();
         }
     })
 }   
