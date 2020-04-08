@@ -5,13 +5,13 @@ module.exports = function (app) {
 
     app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, async function (req, res) {
         const { message } = req.body;
-        const chatId = message.chat.id;
         console.log(message);
-
-        if (!message) {
+        
+        if (!message || !message.chat) {
             return res.end();
         }
-
+        
+        const chatId = message.chat.id;
         let text;
         switch (message.text) {
             case '/start':
@@ -25,7 +25,6 @@ module.exports = function (app) {
         try {
             const response = await messageService.sendMessage(chatId, text);
             console.log(`Message posted: ${text}`)
-            console.log(response);
             res.end('ok');
         } catch (err) {
             console.log('Error :', err)
