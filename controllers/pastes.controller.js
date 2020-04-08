@@ -12,19 +12,19 @@ module.exports = async function (app) {
             return res.end();
         }
 
-        let message;
+        let text;
         switch (message.text) {
             case '/start':
-                message = WELCOME_MESSAGE;
+                text = WELCOME_MESSAGE;
                 break;
             default:
-                message = message.text;
+                text = message.text;
                 break;
         }
-        
+
         try {
-            const response = await messageService.sendMessage(chatId, message);
-            console.log(`Message posted: ${message}`)
+            const response = await messageService.sendMessage(chatId, text);
+            console.log(`Message posted: ${text}`)
             console.log(response);
             res.end('ok');
         } catch (err) {
