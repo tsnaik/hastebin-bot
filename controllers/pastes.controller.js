@@ -1,7 +1,7 @@
 const messageService = require('../services/message.service')
 const WELCOME_MESSAGE = 'Welcome to hastebot. Send me a code snippet as a message and I will give you the hastebin URL for that message.';
 
-const sendMessage = async (chatId, text) => {
+const sendMessage = async (chatId, text, res) => {
     try {
         const response = await messageService.sendMessage(chatId, text);
         console.log(`Message posted: ${text}`)
@@ -26,17 +26,21 @@ module.exports = function (app) {
         let text;
         if (message.text === 'start') {
             text = WELCOME_MESSAGE;
-            sendMessage(chatId, text);
+            sendMessage(chatId, text, res);
             return;
         }
 
         if (message.text.startsWith('/create')) {
-            const snippet = message.text.substring(8);
-            text = snippet;
-            sendMessage(chatId, text);
+            if(message.text.length < 9) {
+                text = 'Please add a code snippet after /create to create'
+            } else {
+                const snippet = message.text.substring(8);
+                text = snippet;
+            }
+            sendMessage(chatId, text, res);
             return;
         }
-
+        
         res.end();
     })
 }
