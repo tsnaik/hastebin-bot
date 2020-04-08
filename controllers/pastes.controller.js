@@ -1,9 +1,9 @@
 const messageService = require('../services/message.service')
 const WELCOME_MESSAGE = 'Welcome to hastebot. Send me a code snippet as a message and I will give you the hastebin URL for that message.';
-module.exports = async function (app) {
+module.exports = function (app) {
     app.get('/hello', (req, res) => res.send("hello world"));
 
-    app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, function (req, res) {
+    app.post(`/${process.env.TELEGRAM_TOKEN}/new-message`, async function (req, res) {
         const { message } = req.body;
         const chatId = message.chat.id;
         console.log(message);
