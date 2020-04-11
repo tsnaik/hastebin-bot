@@ -1,6 +1,5 @@
 # Hastebin Telegram Bot
-Simple telegram bot for creating and sharing [Hastebin](https://github.com/seejohnrun/haste-server) snippets
-
+Simple [telegram](https://telegram.org/) bot for creating and sharing [Hastebin](https://github.com/seejohnrun/haste-server) snippets. [Give it a spin](https://telegram.me/hastebin_tsnaik_bot)
 ## Prerequisites
 - [npm](https://www.npmjs.com/get-npm)
 
@@ -9,7 +8,7 @@ Simple telegram bot for creating and sharing [Hastebin](https://github.com/seejo
   ```shell script
   $ npm install
   ```
-- Add a file named **.env** in the project root with content:
+- Create a file named **.env** in the project root with content:
   ```
   TELEGRAM_TOKEN=<your-unique-token>
   ```
