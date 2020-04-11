@@ -33,7 +33,6 @@ module.exports = function (app) {
                 sendMessage(chatId, text, res);
                 return;
             }
-
             if (message.text.startsWith('/create')) {
                 const entity = message.entities.find((value) => value.type === 'bot_command');
                 if (message.text.length < entity.length - entity.offset + 1) {
@@ -51,7 +50,6 @@ module.exports = function (app) {
 
         } catch (err) {
             console.log(err);
-        } finally {
             res.end();
         }
     })
