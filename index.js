@@ -13,7 +13,10 @@ app.use(
 )
 app.use(cors());
 
-require('./controllers/pastes.controller')();
+const Telegraf = require('telegraf')
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN)
+app.use(bot.webhookCallback(`/${process.env.TELEGRAM_TOKEN}/new-message`))
+require('./controllers/pastes.controller')(bot);
 
 
 app.listen(PORT, function() {
