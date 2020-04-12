@@ -19,7 +19,7 @@ Simple [telegram](https://telegram.org/) bot for creating and sharing [Hastebin]
 
 ## Run
 ```shell script
-$ node index.js
+$ npm start
 ```
 
 ## Deploy
