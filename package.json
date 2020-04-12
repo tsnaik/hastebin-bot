@@ -4,13 +4,15 @@
   "description": "simple telegram bot for hastebin",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tanmay Naik",
   "license": "ISC",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.1.0"
+    "cz-conventional-changelog": "^3.1.0",
+    "nodemon": "^2.0.3"
   },
   "config": {
     "commitizen": {
@@ -24,7 +26,6 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.3",
     "telegraf": "^3.37.0"
   }
 }
