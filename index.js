@@ -5,7 +5,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000;
 
-app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
     extended: true
@@ -13,7 +13,8 @@ app.use(
 )
 app.use(cors());
 
-require('./controllers/pastes.controller')(app);
+require('./controllers/pastes.controller')();
+
 
 app.listen(PORT, function() {
   console.log(`Hastebot listening on port ${process.env.PORT}`)
