@@ -7,8 +7,13 @@ module.exports = async (ctx) => {
         text = 'Please add a code snippet after the command'
     } else {
         const snippet = ctx.message.text.substring(entity.length - entity.offset + 1);
-        const response = await hasteService.createSnippet(snippet);
-        text = `https://www.hastebin.com/${response.data.key}`;
+        try {
+            const response = await hasteService.createSnippet(snippet);
+            text = `https://www.hastebin.com/${response.data.key}`;
+        } catch (error) {
+            console.error(error.message);
+            text = "Error with the hastebin server. Not my fault!"
+        }
     }
-    ctx.reply(text);
+    return await ctx.reply(text);
 }
