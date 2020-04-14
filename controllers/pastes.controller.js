@@ -1,10 +1,12 @@
-const startCommand = require('./commands/start.command')
-const createCommand = require('./commands/create.command')
-
+const commandMap = require('./commands/commandMap');
 
 module.exports = function (bot) {
-    bot.start(startCommand)
-    bot.help((ctx) => ctx.reply('Help message'))
-    bot.command('create', createCommand);
+    console.log('commands', commandMap);
+
+    Object.entries(commandMap).forEach(entry => {
+        bot.command(entry[0], entry[1]);
+    });
+
+    bot.help((ctx) => ctx.reply('Help message'));
     bot.launch()
 }   

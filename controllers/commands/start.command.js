@@ -1,2 +1,2 @@
-const WELCOME_MESSAGE = 'Welcome to hastebot. Send me a code snippet as a message and I will give you the hastebin URL for that message.';
-module.exports = async (ctx) => await ctx.reply(WELCOME_MESSAGE)
+const WELCOME_MESSAGE = 'Welcome to Hastebot\\! Send me a command `/create <code_snippet>` and I will give you the hastebin URL\\. I can be part of a group and you can create snippets on the fly\\!';
+module.exports = async (ctx) => await ctx.reply(WELCOME_MESSAGE, {parse_mode: 'MarkdownV2'})
