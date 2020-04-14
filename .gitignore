@@ -116,3 +116,6 @@ dist
 
 # tokens
 common/tokens.js
+
+# app storage
+storage/

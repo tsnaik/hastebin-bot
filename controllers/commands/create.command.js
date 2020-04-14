@@ -1,6 +1,8 @@
 const hasteService = require('../../services/hastebin.service')
+const STORE_CONFIG = { path: process.cwd() + '/storage/userOutputChatIds.json' };
 
 module.exports = async (ctx) => {
+    const store = require('data-store')(STORE_CONFIG);
     const entity = ctx.message.entities.find((value) => value.type === 'bot_command');
 
     if (ctx.message.text.length < entity.length - entity.offset + 1) {
@@ -15,5 +17,10 @@ module.exports = async (ctx) => {
             text = "Error with the hastebin server. Not my fault!"
         }
     }
-    return await ctx.reply(text);
+    const senderId = ctx.from.id.toString();
+    if (store.has(senderId)) {
+        return await ctx.telegram.sendMessage(store.get(senderId), text);
+    } else {
+        return await ctx.reply(text);
+    }
 }

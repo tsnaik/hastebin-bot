@@ -7,6 +7,5 @@ module.exports = function (bot) {
         bot.command(entry[0], entry[1]);
     });
 
-    bot.help((ctx) => ctx.reply('Help message'));
     bot.launch()
 }   
