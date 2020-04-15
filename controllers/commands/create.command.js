@@ -1,8 +1,7 @@
 const hasteService = require('../../services/hastebin.service')
-const STORE_CONFIG = { path: process.cwd() + '/storage/userOutputChatIds.json' };
+const userOutputChatIdDAO = require('../../dao/userOutputChatIds.dao');
 
 module.exports = async (ctx) => {
-    const store = require('data-store')(STORE_CONFIG);
     const entity = ctx.message.entities.find((value) => value.type === 'bot_command');
 
     if (ctx.message.text.length < entity.length - entity.offset + 1) {
@@ -18,10 +17,12 @@ module.exports = async (ctx) => {
         return await ctx.reply('Error with the hastebin server. Not my fault!');
     }
     const senderId = ctx.from.id.toString();
-    if (store.has(senderId)) {
+    const dbResult = await userOutputChatIdDAO.find(senderId);
+    
+    if (dbResult) {
         const newText = `[${ctx.from.first_name}](tg://user?id=${senderId}) sent a code snippet:\n\n`
         .concat(`[Click here to view](${url})`);
-        return await ctx.telegram.sendMessage(store.get(senderId), newText, { parse_mode: 'MarkdownV2' });
+        return await ctx.telegram.sendMessage(dbResult.outputChatId, newText, { parse_mode: 'MarkdownV2' });
     }
     return await ctx.reply(url);
 }

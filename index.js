@@ -12,8 +12,17 @@ const url = process.env.BOT_URL;
 const webhookPath = `/${process.env.TELEGRAM_TOKEN}/new-message`;
 
 bot.telegram.setWebhook(url.concat(webhookPath))
-            .catch((err) => console.error(err));
+  .catch((err) => console.error(err));
 app.use(bot.webhookCallback(webhookPath));
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true })
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log('Connected to mongo at ' + process.env.MONGODB_URI);
+});
 
 require('./controllers/pastes.controller')(bot);
 
