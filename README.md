@@ -1,3 +1,5 @@
+*This repository is not being maintained anymore. The bot will probably not work as the [mLab add-on Heroku has been shut down](https://docs.mlab.com/shutdown-of-heroku-add-on/) and I haven't gotten a chance to migrate.*
+
 # Hastebin Telegram Bot
 Simple [telegram](https://telegram.org/) bot for creating and sharing [Hastebin](https://github.com/seejohnrun/haste-server) snippets. [Give it a spin](https://telegram.me/hastebin_tsnaik_bot)
 
